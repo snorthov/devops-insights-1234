@@ -1,4 +1,4 @@
-/*jshint node:true*/
+/*eslin-env node:true*/
 
 var express = require("express");
 var bodyParser = require('body-parser');
@@ -9,7 +9,7 @@ EJS.open = "<ejs>";
 EJS.close = "</ejs>";
 
 var host = process.env.PORT ? '0.0.0.0' : 'localhost';
-var port = (process.env.PORT || 3456);
+var port = process.env.PORT || 3456;
 var url = require('url').format({hostname: host, port: port, protocol: 'http'});
 
 var app = express();
@@ -28,6 +28,6 @@ server.listen(port, function () {
     console.log('Weather Report listening on ' + url);
 });
 
-app.get("/", function(req, res) {
+app.get("/", /* @callback */ function(req, res) {
     return res.render('main');
 });
